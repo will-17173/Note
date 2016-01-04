@@ -1,0 +1,17 @@
+{
+  "name": "note",
+  "version": "1.0.0",
+  "description": "Note",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "mongodb": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iwill",
+  "license": "ISC"
+}

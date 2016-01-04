@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/wangEditor.css">
+
+    <style type="text/css">
+    #container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    #nav {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .notes {
+        padding: 0 10px;
+    }
+    
+    .opt {
+        padding-top: 10px;
+        border-top: 1px dotted #c0c0c0;
+        margin-top: 10px;
+    }
+     #editor {overflow:scroll; height:200px; max-height: 400px;}
+     .wangEditor-container{ margin-top: 10px;}
+    </style>
+    <title>Note</title>
+</head>
+
+<body>
+    <div class="container-fluid" id="container">
+        <nav class="navbar navbar-inverse navbar-static-top" id="nav">
+            <a class="navbar-brand" href="#">Note</a>
+            <a href="#" class="btn btn-success navbar-btn pull-right" data-toggle="modal" data-target="#new_note">新建</a>
+        </nav>
+        <div class="notes">
+            <div class="panel panel-default">
+                <div class="panel-heading">Panel heading without title
+                    <p class="pull-right">2016-01-01</p>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                    <div class="opt">
+                        <div class="pull-right">
+                            <a class="btn btn-primary btn-sm btn-edit" data-toggle="modal" data-target="#new_note">编辑</a> <a data-toggle="modal" data-target="#confirm_delete" class="btn btn-danger btn-sm btn-del">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">确认要删除?</h4>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="new_note" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">新建一个笔记</h4>
+      </div>
+      <div class="modal-body">
+      	<input type="text" class="form-control" id="note_title" placeholder="标题">
+
+      	<textarea id="editor"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="submit">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/js/wangEditor.min.js"></script>
+    <script src="/js/spin.min.js"></script>
+    <script>
+    	$('#editor').wangEditor();
+    	// var spinner = new Spinner().spin();
+    	// $('body').append(spinner.el);
+
+    	$.getJSON('/list', function(data){
+    		console.log(data)
+    	})
+
+    	// $(document).click(function(){
+    	// 	$.post('/delete', {_id: '568a502501a0490435af23e1'}, function(data){
+    	// 		console.log(data);
+    	// 	})
+    	// })
+
+    	$('#submit').click(function(){
+    		var title = $('#note_title').val(),
+    			content = $('#editor').val(),
+    			t = new Date(),
+    			date = t.getFullYear() + '-' + (t.getMonth() + 1) + '-' + t.getDate();
+    		$.post('/new', {date: date, title: title, content: content}, function(data){
+    			if(data.ok){
+
+    			} else{
+
+    			}
+    		})
+
+    	})
+
+    </script>
+</body>
+
+</html>
