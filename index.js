@@ -48,12 +48,6 @@ app.post('/new', function(req, res){
 	})
 })
 
-app.post('/edit', function(req, res){
-	dbMethods.editNote(req.body, function(result){
-		res.send(result);
-	})
-})
-
 app.post('/delete', function(req, res){
 	dbMethods.deleteNote(req.body._id, function(result){
 		res.send(result);
