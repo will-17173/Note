@@ -21,8 +21,10 @@ MongoClient.connect(url, function(err, db){
 				callback(result);
 		})	
 	}
-	dbMethods.editNote = function(id, data, callback){
-		
+	dbMethods.updateNote = function(id, data, callback){
+		col.updateOne({_id: new ObjectId(id)}, {$set: data}).then(function(result){
+			callback(result);
+		})
 	}
 	dbMethods.deleteNote = function(id, callback){
 		col.deleteOne({_id: new ObjectId(id)}).then(function(result){
@@ -58,11 +60,19 @@ app.post('/delete', function(req, res){
 	})
 })
 
+app.post('/update', function(req, res){
+	dbMethods.updateNote(req.body._id, {title: req.body.title, content: req.body.content}, function(result){
+		res.send(result);
+	})
+})
+
+
 app.get('/list', function(req, res){
 	dbMethods.queryAll(function(data){
 		res.send(data);
 	})
 })
+
 
 http.listen(10000, function(){
   console.log('listening on *:10000');

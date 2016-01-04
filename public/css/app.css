@@ -1,0 +1,22 @@
+#container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#nav {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.notes {
+    padding: 0 10px;
+}
+
+.opt {
+    padding-top: 10px;
+    border-top: 1px dotted #c0c0c0;
+    margin-top: 10px;
+}
+ #editor {overflow:scroll; height:200px; max-height: 400px;}
+ .wangEditor-container{ margin-top: 10px;}
+ .empty{ text-align: center; padding-top: 50px;}
