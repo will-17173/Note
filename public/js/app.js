@@ -29,8 +29,7 @@ var app = {
             'menuConfig': [
                 ['viewSourceCode'],
                 ['bold', 'italic', 'backgroundColor', 'strikethrough'],
-                ['insertImage', 'insertCode'],
-                ['mobilePreView']
+                ['insertImage', 'insertCode']
             ]
         });
     },
