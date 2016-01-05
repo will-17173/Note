@@ -25,7 +25,14 @@ var app = {
         });
     },
     initEditor: function(){
-        app.editor = $('#editor').wangEditor();
+        app.editor = $('#editor').wangEditor({
+            'menuConfig': [
+                ['viewSourceCode'],
+                ['bold', 'italic', 'backgroundColor', 'strikethrough'],
+                ['insertImage', 'insertCode'],
+                ['mobilePreView']
+            ]
+        });
     },
     getId: function(el){
         return $(el).parents('[data-id]').attr('data-id');
@@ -92,7 +99,8 @@ var app = {
         })
     },
     clear: function(){
-        $('#note_title, #editor').val('');
+        $('#note_title').val('');
+        app.editor.html('');
     },
     showTip: function(text){
         $('#tip').modal('show').find('.modal-body').text(text);
