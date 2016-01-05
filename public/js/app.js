@@ -89,7 +89,7 @@ var app = {
         var title = $('#note_title').val(),
             content = $('#editor').val();
         $.post('/update', {_id: app.nowId, title: title, content: content}, function(data){
-            if(data.ok && data.n && data.nModified){
+            if(data.ok && data.n){
                 app.clear();
                 app.showTip('更新成功');
                 $('#new_note').modal('hide');
