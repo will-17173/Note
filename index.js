@@ -62,6 +62,7 @@ app.post('/update', function(req, res){
 
 
 app.get('/list', function(req, res){
+	res.set('Access-Control-Allow-Origin', '*');
 	dbMethods.queryAll(function(data){
 		res.send(data);
 	})
